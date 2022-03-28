@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<dal>xml</dal>
+	<dal-packages>
+		<list class="DalObject" namespace="DAL">DalObject</list>
+		<xml class="DXML" namespace="DAL">DXML</xml>
+	</dal-packages>
+	<Data>
+		<Available>1</Available>
+		<Heavy>150</Heavy>
+	    <Light>10</Light>
+	<Medium>50</Medium>
+	
+	<ChargingRate>10.25</ChargingRate>
+	</Data>
+	</config>

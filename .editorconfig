@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CS0006: Metadata file 'C:\Users\BatSHeva\source\repos\shirelk\dotNet5782_5626_0865\BL\bin\Debug\net5.0\ref\BL.dll' could not be found
+dotnet_diagnostic.CS0006.severity = suggestion

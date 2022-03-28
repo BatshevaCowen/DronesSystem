@@ -1,0 +1,425 @@
+﻿<Window x:Class="PL.CustumerInActionView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Title="CustumerInActionView" 
+        Height="600" Width="780">
+
+    <Grid> 
+
+        <Image 
+            Source="Images/purple background.jpg"
+            Stretch="Fill"
+            Opacity="0.5"/>
+
+        <Grid
+            Name="ShowCustumerGrid" Margin="10,-10,10,10">
+
+            <Grid 
+                x:Name="UpdatCustumereGrid" 
+                Visibility="Collapsed" 
+                VerticalAlignment="Top" 
+                Margin="39,51,0,0" 
+                HorizontalAlignment="Left" Height="156" Width="267">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Label 
+                    VerticalAlignment="Center" 
+                    FontFamily="Comic Sans MS"
+                    Grid.Row="0" 
+                    Margin="3" 
+                    HorizontalAlignment="Left" 
+                    Grid.Column="0" 
+                    Content="custumer id:"/>
+                <TextBox 
+                    x:Name="idCusTextBox" 
+                    FontFamily="Comic Sans MS"
+                    Width="120" 
+                    VerticalAlignment="Center" 
+                    Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" 
+                    Grid.Row="0" 
+                    Margin="3" 
+                    Height="23" 
+                    HorizontalAlignment="Left" 
+                    Grid.Column="1" 
+                    IsEnabled="False"/>
+                <Label 
+                    VerticalAlignment="Center" 
+                    FontFamily="Comic Sans MS"
+                    Grid.Row="1" 
+                    Margin="3" 
+                    HorizontalAlignment="Left" 
+                    Grid.Column="0" 
+                    Content="Name:"/>
+                <TextBox 
+                    x:Name="nameTextBox" 
+                    FontFamily="Comic Sans MS"
+                    Width="120" 
+                    VerticalAlignment="Center" 
+                    Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" 
+                    Grid.Row="1" 
+                    Margin="3" 
+                    Height="23" 
+                    HorizontalAlignment="Left" 
+                    Grid.Column="1" 
+                    IsEnabled="True"/>
+                <Label 
+                    VerticalAlignment="Center" 
+                    FontFamily="Comic Sans MS"
+                    Grid.Row="3" 
+                    Margin="3" 
+                    HorizontalAlignment="Left" 
+                    Grid.Column="0" 
+                    Content="phone:"/>
+                <TextBox 
+                    x:Name="phoneTextBox" 
+                    FontFamily="Comic Sans MS"
+                    Width="120" 
+                    VerticalAlignment="Center"  
+                    Text="{Binding Phone, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  
+                    Grid.Row="3" 
+                    Margin="3" 
+                    Height="23" 
+                    HorizontalAlignment="Left" 
+                    Grid.Column="1" IsEnabled="True"/>
+
+                <Label 
+                    VerticalAlignment="Center" 
+                    FontFamily="Comic Sans MS"
+                    Grid.Row="6" 
+                    Margin="3" 
+                    HorizontalAlignment="Left" 
+                    Grid.Column="0" 
+                    Content="Location:"/>
+                <Label 
+                    x:Name="LocationTextBox" 
+                    FontFamily="Comic Sans MS" 
+                    VerticalAlignment="Center" 
+                  Content="{Binding Location}"
+                    Grid.Row="6" 
+                    Margin="3,0,-20,0" 
+                    Height="23" 
+                    Grid.Column="1" 
+                    IsEnabled="False"/>
+
+            </Grid>
+
+            <Grid 
+                x:Name="AddCustumerGrid" 
+                Visibility="Collapsed" 
+                VerticalAlignment="Top" 
+                Margin="31,61,0,0" 
+                HorizontalAlignment="Left" Height="309" Width="266">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="12*" MinWidth="60"/>
+                    <ColumnDefinition Width="37*" MinWidth="120"/>
+                </Grid.ColumnDefinitions>
+
+
+                <materialDesign:PackIcon 
+                    Kind="CardAccountDetailsOutline"
+                    Margin="0,7,0,0" 
+                    Width="26" RenderTransformOrigin="0.5,0.5" 
+                    Height="30" HorizontalAlignment="Center"/>
+                <TextBox 
+                        x:Name="idCusTextBoxAdd" 
+                        FontFamily="Comic Sans MS"
+                        materialDesign:HintAssist.Hint="ID"
+                        materialDesign:TextFieldAssist.HasClearButton="True"
+                        Width="120" 
+                        Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" 
+                        TextWrapping="Wrap" 
+                        VerticalAlignment="Center" 
+                        materialDesign:HintAssist.HelperText="9 digits" 
+                        MaxLength="9" 
+                        Height="25" 
+                        HorizontalAlignment="Left" 
+                        Grid.Column="1" 
+                        IsEnabled="True"
+                        PreviewTextInput="NumberValidationTextBox"/>
+                <!--<Label 
+                        VerticalAlignment="Center" 
+                        FontFamily="Comic Sans MS"
+                        Grid.Row="1" 
+                        Margin="3" 
+                        HorizontalAlignment="Left" 
+                        Grid.Column="0" 
+                        Content="Name:"/>-->
+                <!--Person icon-->
+                <materialDesign:PackIcon 
+            Kind="Account" 
+            Width="26" RenderTransformOrigin="0.5,0.5" 
+            Height="30" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                    <materialDesign:PackIcon.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleY="0"/>
+                            <RotateTransform/>
+                            <TranslateTransform Y="0"/>
+                        </TransformGroup>
+                    </materialDesign:PackIcon.RenderTransform>
+                </materialDesign:PackIcon>
+                <TextBox 
+                        x:Name="nameTextBoxAdd" 
+                        FontFamily="Comic Sans MS"
+                        materialDesign:HintAssist.Hint="Name"
+                        materialDesign:TextFieldAssist.HasClearButton="True"
+                        Width="120" 
+                        Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" 
+                        Grid.Row="1" 
+                        Margin="0,9,0,0" 
+                        TextWrapping="Wrap" 
+                        VerticalAlignment="Top" 
+                        materialDesign:HintAssist.HelperText="Enter letters only" 
+                        Height="25"
+                        MaxLength="20"
+                        PreviewTextInput="AlphabetValidationTextBox"
+                        HorizontalAlignment="Left" 
+                        Grid.Column="1" 
+                        IsEnabled="True"/>
+
+                <materialDesign:PackIcon 
+                    Kind="Phone"
+                    Grid.Row="2" 
+                    Width="26" RenderTransformOrigin="0.5,0.5" 
+                    Height="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBox 
+                        x:Name="phoneTextBoxAdd" 
+                        FontFamily="Comic Sans MS"
+                        Width="120" 
+                        materialDesign:HintAssist.Hint="Phone number"
+                        materialDesign:TextFieldAssist.HasClearButton="True"
+                        Text="{Binding Phone, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  
+                        Grid.Row="2" 
+                        Margin="0,9,0,0" 
+                        VerticalAlignment="Top" 
+                        materialDesign:HintAssist.HelperText="9-10 digits" 
+                        MaxLength="10"
+                        Height="25"
+                        PreviewTextInput="NumberValidationTextBox"
+                        HorizontalAlignment="Left" 
+                        Grid.Column="1" IsEnabled="True"/>
+
+                <materialDesign:PackIcon Kind="MapMarker"
+                    Width="26" 
+                    Grid.Row="3" 
+                    RenderTransformOrigin="0.5,0.5" 
+                    Height="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBox 
+                        x:Name="latitudeTextBoxAdd"
+                        FontFamily="Comic Sans MS"
+                        Width="120" 
+                        VerticalAlignment="Center" 
+                        Text="{Binding Location.Latitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" 
+                        Grid.Row="3" 
+                        TextWrapping="Wrap" 
+                        HorizontalAlignment="Left" 
+                        materialDesign:HintAssist.HelperText="Numbers only" 
+                        materialDesign:HintAssist.Hint="Longitude"
+                        materialDesign:TextFieldAssist.HasClearButton="True"
+                        MaxLength="10"
+                        Height="25"
+                        PreviewTextInput="DoubleNumberValidationTextBox"
+                        Grid.Column="1" 
+                        IsEnabled="True"/>
+
+                <materialDesign:PackIcon 
+                    Kind="MapMarkerOutline"
+                    Grid.Row="4"
+                    Width="26" RenderTransformOrigin="0.5,0.5" 
+                    Height="30" Margin="0,13,0,0" HorizontalAlignment="Center"/>
+                <TextBox 
+                    x:Name="longitudeTextBoxAdd" 
+                    FontFamily="Comic Sans MS"
+                    TextWrapping="Wrap" 
+                    HorizontalAlignment="Left" 
+                    materialDesign:HintAssist.HelperText="Numbers only" 
+                    materialDesign:HintAssist.Hint="Longitude"
+                    materialDesign:TextFieldAssist.HasClearButton="True"
+                    MaxLength="10"
+                    Height="25"
+                    PreviewTextInput="DoubleNumberValidationTextBox"
+                    Width="120" 
+                    VerticalAlignment="Center" 
+                    Text="{Binding Location.Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" 
+                    Grid.Row="4" 
+                    Grid.Column="1" 
+                    IsEnabled="True"/>
+                <!--Person icon-->
+                <materialDesign:PackIcon 
+                    Kind="Account"             
+                    Width="27" 
+                    Grid.Row="5"
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center"
+                    RenderTransformOrigin="0.5,0.5" 
+                    Height="30" >
+                </materialDesign:PackIcon>
+                <TextBox 
+                    x:Name="ChooseUserNameTextBox"
+                    materialDesign:HintAssist.Hint="Choose User Name"
+                    materialDesign:TextFieldAssist.HasClearButton="True"
+                    TextWrapping="Wrap" 
+                    VerticalAlignment="Top" 
+                    HorizontalAlignment="Left"
+                    materialDesign:HintAssist.HelperText="Enter letters only" 
+                    Height="25"
+                    Width="120"
+                    Grid.Row="5"
+                    MaxLength="10"
+                    PreviewTextInput="AlphabetValidationTextBox" Grid.ColumnSpan="2" Margin="65,6,0,0"/>
+                <materialDesign:PackIcon 
+                    Kind="Key"
+                    Width="27" 
+                    Grid.Row="6"
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center"
+                    RenderTransformOrigin="0.5,0.5" 
+                    Height="30"/>
+                <TextBox 
+                    x:Name="ChoosePasswordTextBox"
+                    materialDesign:HintAssist.Hint="Choose Password"
+                    materialDesign:TextFieldAssist.HasClearButton="True"
+                    TextWrapping="Wrap" 
+                    Grid.Row="6"
+                    VerticalAlignment="Top" 
+                    materialDesign:HintAssist.HelperText="At least 4 characters" 
+                    Height="25"
+                    MaxLength="10" Grid.ColumnSpan="2" Margin="65,6,81,0"/>
+
+            </Grid>
+
+        </Grid>
+        <Grid x:Name="grid_showListView"
+              Visibility="Visible">
+
+            <Grid x:Name="Sender_Grid">
+                <Label x:Name="lblS" Visibility="Collapsed" Content="Sender:" FontFamily="Comic Sans MS" Margin="0,437,0,85" FontWeight="Bold" FontSize="20" HorizontalAlignment="Left"/>
+                <ListView  Margin="85,421,6,18" 
+                          FontFamily="Comic Sans MS"
+                          x:Name="listVSenderParcel"
+                          RenderTransformOrigin="0.5,0.5"
+                          Width="680" Visibility="Hidden"
+                          MouseDoubleClick="ParcelsList_MouseDoubleClick">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleY="0.107"/>
+                            <RotateTransform/>
+                            <TranslateTransform Y="0.765"/>
+                        </TransformGroup>
+                    </ListView.RenderTransform>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="80" DisplayMemberBinding="{Binding Id}" />
+                            <GridViewColumn Width="120" DisplayMemberBinding="{Binding Weight}" />
+                            <GridViewColumn Width="120" DisplayMemberBinding="{Binding Priority}" />
+                            <GridViewColumn Width="150" DisplayMemberBinding="{Binding ParcelStatus}" />
+                            <GridViewColumn Width="200" DisplayMemberBinding="{Binding CustomerInParcel}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+
+            <Grid x:Name="Reciver_Grid">
+
+                <Label x:Name="lblR" Visibility="Collapsed"  Content="Resiver:" Margin="0,258,0,256" FontFamily="Comic Sans MS" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left"/>
+                <ListView  x:Name="listVReciverParcel" 
+                       FontFamily="Comic Sans MS"
+                       Margin="84,248,10,188"
+                       Width="680" Visibility="Collapsed"
+                       MouseDoubleClick="ParcelsList_MouseDoubleClick" >
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="ID" Width="80" DisplayMemberBinding="{Binding Id}" />
+                            <GridViewColumn Header="Weight" Width="120" DisplayMemberBinding="{Binding Weight}" />
+                            <GridViewColumn Header="Priority"   Width="120" DisplayMemberBinding="{Binding Priority}" />
+                            <GridViewColumn Header="Parcel Status"   Width="150" DisplayMemberBinding="{Binding ParcelStatus}" />
+                            <GridViewColumn Header="Customer Id"   Width="200" DisplayMemberBinding="{Binding CustomerInParcel}" />
+
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </Grid>
+
+        <Button 
+                x:Name="btnAddCustumer_cencel" 
+                Content="Cencel" 
+                FontFamily="Comic Sans MS"
+                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                materialDesign:ButtonAssist.CornerRadius="10"
+                HorizontalAlignment="Left" 
+                Margin="574,60,0,0" 
+                VerticalAlignment="Top" 
+                Height="55" Width="100" 
+                Visibility="Collapsed"
+                Background="Firebrick"
+                Click="btnAddCustumer_cancel_Click"/>
+
+        <Button 
+                x:Name="btnUpdateCustumer" 
+                Content="Update" 
+                FontFamily="Comic Sans MS"
+                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                materialDesign:ButtonAssist.CornerRadius="10"
+                HorizontalAlignment="Left" 
+                Margin="424,60,0,0" 
+                VerticalAlignment="Top" 
+                Height="55" Width="100" 
+                Visibility="Collapsed"
+                Click="btnUpdateCustumer_Click"
+                />
+        <Button 
+                x:Name="btnOKCustumer" 
+                Content="Add" 
+                FontFamily="Comic Sans MS"
+                Style="{StaticResource MaterialDesignRaisedButton}"
+                materialDesign:ButtonAssist.CornerRadius="10"                
+                HorizontalAlignment="Left" 
+                Margin="424,60,0,0" 
+                VerticalAlignment="Top" 
+                Height="55" Width="100" 
+                Visibility="Collapsed" 
+                Click="btnOKCustumer_Click"/>
+    </Grid>
+
+</Window>

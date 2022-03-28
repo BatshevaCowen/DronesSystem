@@ -1,0 +1,368 @@
+﻿<Window x:Class="PL.DroneInActionView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"        
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Title="DroneInActionView" Height="402" Width="578" 
+        Loaded="Window_Loaded">
+    <Window.Resources>
+        <local:LattitudeToDmsConverter x:Key="LattitudeToDmsConverter"/>
+        <local:LongtitudeToDmsConverter x:Key="LongtitudeToDmsConverter"/>
+    </Window.Resources>
+    <Grid >
+
+        <Image 
+            Source="Images/purple background.jpg"
+            Stretch="Fill"
+            Opacity="0.5"/>
+
+        <Grid 
+                x:Name="UpdateGrid" 
+                Visibility="Collapsed" 
+                VerticalAlignment="Top" 
+                Margin="31,61,0,0" 
+                HorizontalAlignment="Left" Height="224" Width="311">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Label 
+                    VerticalAlignment="Center" 
+                    Grid.Row="0" 
+                    Margin="3" 
+                    FontFamily="Comic Sans MS"
+                    HorizontalAlignment="Left" 
+                    Grid.Column="0" 
+                    Content="Battery Status:"/>
+                <TextBox 
+                    x:Name="batteryStatusTextBox" 
+                    Width="150" 
+                    FontFamily="Comic Sans MS"
+                    VerticalAlignment="Center" 
+                    Text="{Binding Battery, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" 
+                    Grid.Row="0" 
+                    Margin="3" 
+                    Height="23" 
+                    HorizontalAlignment="Left" 
+                    Grid.Column="1" 
+                    IsEnabled="False"/>
+                <Label 
+                    VerticalAlignment="Center" 
+                    Grid.Row="1" 
+                    Margin="3" 
+                    FontFamily="Comic Sans MS"
+                    HorizontalAlignment="Left" 
+                    Grid.Column="0" 
+                    Content="Id:"/>
+                <TextBox 
+                    x:Name="idTextBox" 
+                    Width="150" 
+                    FontFamily="Comic Sans MS"
+                    VerticalAlignment="Center" 
+                    Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" 
+                    Grid.Row="1" 
+                    Margin="3" 
+                    Height="23" 
+                    HorizontalAlignment="Left" 
+                    Grid.Column="1" 
+                    IsEnabled="False"/>
+                <Label 
+                    VerticalAlignment="Center" 
+                    FontFamily="Comic Sans MS"
+                    Grid.Row="3" 
+                    Margin="3" 
+                    HorizontalAlignment="Left" 
+                    Grid.Column="0" 
+                    Content="Drone Model:"/>
+                <TextBox 
+                    x:Name="droneModelTextBox" 
+                    Width="150" 
+                    FontFamily="Comic Sans MS"
+                    VerticalAlignment="Center"  
+                    Text="{Binding Model, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  
+                    Grid.Row="3" 
+                    Margin="3" 
+                    Height="23" 
+                    HorizontalAlignment="Left" 
+                    Grid.Column="1"/>
+                <Label 
+                    VerticalAlignment="Center" 
+                    Grid.Row="4" 
+                    Margin="3" 
+                    HorizontalAlignment="Left" 
+                    Grid.Column="0" 
+                    Content="Drone Status:"
+                    FontFamily="Comic Sans MS"/>
+                <ComboBox 
+                    x:Name="droneStatusComboBox" 
+                    Width="150" 
+                    VerticalAlignment="Center" 
+                    Grid.Row="4" 
+                    Margin="3"  
+                    Height="Auto" 
+                    HorizontalAlignment="Left" 
+                    Grid.Column="1" 
+                    IsEnabled="False"
+                    FontFamily="Comic Sans MS"
+                    Text="{ Binding DroneStatuses, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+
+                <Label 
+                    VerticalAlignment="Center" 
+                    Grid.Row="5" 
+                    Margin="3" 
+                    HorizontalAlignment="Left" 
+                    Grid.Column="0" 
+                    Content="Weight Category:"
+                    FontFamily="Comic Sans MS"/>
+                <TextBox 
+                    x:Name="droneWeightTxtBox" 
+                    Grid.Column="1" 
+                    Margin="0,4,0,0" 
+                    Text="{Binding Weight, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" 
+                    Grid.Row="5" 
+                    VerticalAlignment="Top" 
+                    Width="150" 
+                    HorizontalAlignment="Left" 
+                    IsEnabled="False"
+                    FontFamily="Comic Sans MS"/>
+                <Label 
+                    VerticalAlignment="Center" 
+                    Grid.Row="6" 
+                    Margin="3" 
+                    HorizontalAlignment="Left" 
+                    Grid.Column="0" 
+                    Content="Location:"
+                    FontFamily="Comic Sans MS"/>
+                <Label 
+                    x:Name="locationLable" 
+                    Width="170" 
+                    VerticalAlignment="Center" 
+                    Content="{Binding Location}"
+                    Grid.Row="6" 
+                    Margin="3" 
+                    Height="23" 
+                    HorizontalAlignment="Left" 
+                    Grid.Column="1" 
+                    IsEnabled="False"
+                    FontFamily="Comic Sans MS"/>
+
+            </Grid>
+
+            <Grid x:Name="Buttons_Grid" Visibility="Collapsed">
+                <Button 
+                    x:Name="btnDroneToDelivery" 
+                    Content="Send to delivery" 
+                    FontFamily="Comic Sans MS"
+                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                    materialDesign:ButtonAssist.CornerRadius="25"
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top" 
+                    Width="130" 
+                    Height="36"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                    Click="btnDroneToDelivery_Click" Margin="371,41,0,0" />
+
+                <Button 
+                    x:Name="btnUpdateDrone" 
+                    Content="Update name" 
+                    FontFamily="Comic Sans MS"
+                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                    materialDesign:ButtonAssist.CornerRadius="25"
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top" 
+                    Background="Indigo"
+                    Height="36" 
+                    Width="130" 
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                    Click="btnUpdateDrone_Click" Margin="25,284,0,0"/>
+                <Button 
+                    x:Name="btnDroneToCharge"  
+                    Content="Send to charge" 
+                    FontFamily="Comic Sans MS"
+                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                    materialDesign:ButtonAssist.CornerRadius="25"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                    HorizontalAlignment="Left" 
+                    Background="Indigo"
+                    VerticalAlignment="Top" 
+                    Height="36" Width="130" 
+                    Click="btnDroneToCharge_Click" Margin="180,286,0,0"/>
+                <Button 
+                    x:Name="btnDischarge" 
+                    Content="Discharge" 
+                    FontFamily="Comic Sans MS"
+                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                    materialDesign:ButtonAssist.CornerRadius="25"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top" 
+                    Background="Indigo"
+                    Width="130" 
+                    Height="36" 
+                    Click="btnDischarge_Click" Margin="180,284,0,0"/>
+                <Button 
+                x:Name="btnCollectParcel" 
+                Content="Collect parcel" 
+                FontFamily="Comic Sans MS"
+                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                materialDesign:ButtonAssist.CornerRadius="25"
+                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Height="36" 
+                Width="130" 
+                Click="btnCollectParcel_Click" Margin="371,99,0,0"/>
+
+                <Button 
+                x:Name="btnParcelDelivery" 
+                Content="Parcel delivery"
+                FontFamily="Comic Sans MS"
+                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                materialDesign:ButtonAssist.CornerRadius="25"
+                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Height="36" 
+                Width="130" 
+                Click="btnParcelDelivery_Click" Margin="371,156,0,0"/>
+                <Button 
+                    x:Name="btnClose" 
+                    Content="Close" 
+                    FontFamily="Comic Sans MS"
+                    Background="Firebrick"
+                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                    materialDesign:ButtonAssist.CornerRadius="25"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                    Click="closeButton_Click"  
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top" 
+                    Width="130" 
+                    Height="36"
+                    Margin="371,286,0,0" />
+                <Button 
+                    x:Name="btnShowParcelInTrnsfer"
+                    Visibility="Visible"
+                    Content="Parcel details" 
+                    FontFamily="Comic Sans MS"
+                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                    materialDesign:ButtonAssist.CornerRadius="25"
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top" 
+                    Width="130" 
+                    Height="36"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+                    Margin="371,213,0,0" Click="btnShowParcelInTrnsfer_Click" />
+
+            </Grid>
+
+
+
+        <Grid x:Name="AddGrid" Visibility="Collapsed"
+              VerticalAlignment="Top" Margin="41,51,0,0" HorizontalAlignment="Left" Height="143" Width="274">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Id:" 
+                   Grid.Row="0" 
+                   Grid.Column="0" 
+                   VerticalAlignment="Top" 
+                   Margin="3,4,0,0" 
+                   FontFamily="Comic Sans MS"
+                   HorizontalAlignment="Left"/>
+            <TextBox 
+                x:Name="idTextBox1"
+                Grid.Row="0"
+                Grid.Column="1" 
+                Width="120" 
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Left" 
+                Margin="3" 
+                Height="23" 
+                FontFamily="Comic Sans MS"
+                Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                materialDesign:TextFieldAssist.HasClearButton="True"
+                TextWrapping="Wrap" 
+                materialDesign:HintAssist.HelperText="5 digits" 
+                MaxLength="5"
+                PreviewTextInput="NumberValidationTextBox">
+            </TextBox>
+            <Label Content="Drone Model:" FontFamily="Comic Sans MS" Grid.Row="1" Grid.Column="0" Margin="3"  VerticalAlignment="Center" HorizontalAlignment="Left" />
+            <TextBox 
+                x:Name="droneModelTextBox1" 
+                Text="{Binding Model, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                Grid.Row="1" 
+                Grid.Column="1" 
+                Width="120" 
+                VerticalAlignment="Center" 
+                FontFamily="Comic Sans MS"
+                materialDesign:TextFieldAssist.HasClearButton="True" 
+                Height="27" 
+                HorizontalAlignment="Center"/>
+
+            <Label VerticalAlignment="Center" FontFamily="Comic Sans MS" Grid.Row="5" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Weight Category:"/>
+
+            <ComboBox x:Name="droneWeightComboBox" FontFamily="Comic Sans MS" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,0,0" 
+                      Text="{Binding Weight, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="120"/>
+
+            <Label Content="Station for charge:" FontFamily="Comic Sans MS" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Top"/>
+            <ComboBox x:Name="stationsComboBox" FontFamily="Comic Sans MS" Grid.Column="1" Grid.Row="8" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="3" Width="120"
+                      Text="{Binding Stations, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+
+
+        </Grid>
+        <Grid
+            x:Name="AddButtonsGrid"
+            Visibility="Collapsed">
+            <Button 
+                x:Name="btnAddDrone" 
+                Content="Add" 
+                FontFamily="Comic Sans MS"
+                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                materialDesign:ButtonAssist.CornerRadius="25"
+                HorizontalAlignment="Left" 
+                Margin="54,259,0,0" 
+                VerticalAlignment="Top" 
+                Height="55" Width="100" 
+                Click="btnAddDrone_Click"/>
+            <Button 
+                x:Name="btnAddDrone_cencel" 
+                Content="Cencel" 
+                FontFamily="Comic Sans MS"
+                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                materialDesign:ButtonAssist.CornerRadius="25"
+                HorizontalAlignment="Left" 
+                Margin="189,258,0,0" 
+                VerticalAlignment="Top" 
+                Height="56" Width="100" 
+                Background="Firebrick"
+                Click="btnAddDrone_cencel_Click"/>
+        </Grid>
+    </Grid>
+
+</Window>

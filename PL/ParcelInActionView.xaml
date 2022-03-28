@@ -1,0 +1,323 @@
+﻿<Window x:Class="PL.ParcelInActionView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Title="ParcelInActionView" Height="680" Width="700">
+    <Grid>
+        <Image 
+            Source="Images/purple background.jpg"
+            Stretch="Fill"
+            Opacity="0.5"/>
+
+        <Grid x:Name="Grid_ShowParcel" 
+              Margin="85,41,350,10" 
+              RenderTransformOrigin="0.5,0.5" 
+              Visibility="Collapsed">
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Grid.RenderTransform>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Content="Parcel datailes:" 
+                   FontWeight="ExtraBold"
+                   Grid.Row="0"
+                   FontSize="14"
+                   HorizontalAlignment="Left" Margin="-17,-44,0,44" Width="126"/>
+
+            <Label Content="Sender details:" 
+                   FontWeight="Bold" Margin="2,32,3,6" Grid.RowSpan="2" Grid.Row="9"/>
+            <Label
+                Content="ID" Margin="-1,1,3,3" Grid.Row="11"/>
+            <TextBox
+                x:Name="SenderIdTXB"
+                Text="{Binding Sender.Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                Grid.Column="1"
+                IsEnabled="False" Margin="2,3,-2,1" Grid.Row="11"/>
+            <Label
+                Content="Name"
+                Grid.Row="12" Margin="1,1,2,32" Grid.RowSpan="2"/>
+            <TextBox
+                x:Name="ReciverIdTXB"
+                Text="{Binding Resiver.Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                Grid.Row="7"
+                Grid.Column="1"
+                IsEnabled="False" Margin="0,33,4,5" Grid.RowSpan="2"/>
+
+            <!--לבדוק שמציג את הלוקיישן טוב לפי הבונוס-->
+
+            <Label Content="Resiver details:" 
+                   FontWeight="Bold"
+                   Grid.Row="6" Margin="-2,34,3,0" Grid.RowSpan="2" />
+            <Label
+                Content="ID"
+                Grid.Row="7" Margin="2,34,5,2" Grid.RowSpan="2"/>
+            <TextBox
+                x:Name="ReciverNameTXB"
+                Text="{Binding Resiver.Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                Grid.Row="8"
+                Grid.Column="1"
+                IsEnabled="False" Margin="2,34,-1,3" Grid.RowSpan="2"/>
+            <Label
+                Content="Name"
+                Grid.Row="9" Margin="1,1,2,2"/>
+            <!--לבדוק שמציג את הלוקיישן טוב לפי הבונוס-->
+
+            <Label x:Name="lblDroneInParcel" Content="Drone In Parcel:" Margin="0,1,6,31" Grid.Row="13" FontWeight="Bold" Grid.RowSpan="2"/>
+            <Label x:Name="lblIDDrone" Content="Id" Margin="4,2,5,1" Grid.Row="14"/>
+            <TextBox x:Name="IdDroneParcelTXB" 
+                     Text="{Binding DroneInParcel.Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                     TextWrapping="Wrap" Grid.Column="1" Margin="1,33,9,34" Grid.RowSpan="3" Grid.Row="13" IsEnabled="False"/>
+            <Label x:Name="lblBatteryDrone" Content="battery" Margin="1,1,1,2" Grid.Row="15"/>
+            <TextBox x:Name="batteryDroneParcelTXB"  Text="{Binding DroneInParcel.Battery, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                      TextWrapping="Wrap" Grid.Column="1" Margin="1,34,2,3" Grid.Row="14" IsEnabled="False" Grid.RowSpan="2" />
+            <Label x:Name="lbllongiDrone" Content="Location" Margin="0,32,3,5" Grid.Row="15" Grid.RowSpan="2"/>
+            <Label 
+                x:Name="LatitudeDroneParcelTXB"  
+                Content="{Binding DroneInParcel.Location, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                Grid.Column="1" 
+                Margin="3,32,6,4" 
+                Grid.Row="15" 
+                IsEnabled="False" 
+                Grid.RowSpan="2"/>
+            <!--<Label x:Name="lblLatiDrone" Content="Longitude" Margin="0,1,8,-1" Grid.Row="17"/>-->
+            <!--<TextBox x:Name="LongitudeDroneParcelTXB"  Text="{Binding DroneInParcel.Location.Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                     TextWrapping="Wrap" Grid.Column="1" Margin="2,32,1,3" Grid.Row="16" IsEnabled="False" Grid.RowSpan="2"/>-->
+            <Label Content="Priority parcel" Margin="1,1,7,2" Grid.Row="1"/>
+            <TextBox x:Name="priorityTXB"  Text="{Binding Priority, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" TextWrapping="Wrap" Grid.Column="1" Margin="0,32,3,4" IsEnabled="False" Grid.RowSpan="2"/>
+            <Label Content="Weight parcel" Margin="3,1,4,4" Grid.Row="2"/>
+            <TextBox x:Name="WeightTXB"  Text="{Binding Weight, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsEnabled="False" TextWrapping="Wrap" Grid.Column="1" Margin="0,34,1,3" Grid.RowSpan="2" Grid.Row="1"/>
+            <Label Content="Creation Time" Margin="2,0,6,32" Grid.RowSpan="2" Grid.Row="3"/>
+            <TextBox x:Name="CreationTXB"  Text="{Binding ParcelCreationTime, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsEnabled="False" TextWrapping="Wrap" Height="33" Margin="4,0,4,0" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3"/>
+            <Label Content="Assign Time" Margin="1,31,7,4" Grid.Row="3" Grid.RowSpan="2"/>
+            <TextBox x:Name="AssignTXB" Text="{Binding AssignmentToParcelTime, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsEnabled="False" TextWrapping="Wrap" Grid.Column="1" Margin="3,5,6,4" Grid.Row="4"/>
+            <Label Content="Collection Time" Margin="1,4,0,32" Grid.Row="5" Grid.RowSpan="2"/>
+            <TextBox x:Name="CollectionTXB"  Text="{Binding CollectionTime, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsEnabled="False" TextWrapping="Wrap" Grid.Column="1" Margin="4,3,-1,6" Grid.Row="5"/>
+            <Label Content="Supply Time" Margin="-2,32,3,3" Grid.Row="5" Grid.RowSpan="2"/>
+            <TextBox x:Name="SupplyTXB"  Text="{Binding SupplyTime, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsEnabled="False" TextWrapping="Wrap" Grid.Column="1" Margin="3,4,-1,4" Grid.Row="6"/>
+            <TextBox x:Name="SenderNameTXB"  Text="{Binding Sender.Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsEnabled="False"  TextWrapping="Wrap" Grid.Column="1" Margin="4,32,1,0" Grid.RowSpan="2" Grid.Row="11"/>
+            <Label Content="parcel id" Margin="0,0,0,4"/>
+            <TextBox x:Name="idTXB"  
+                     Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  
+                     TextWrapping="Wrap" 
+                     IsEnabled="False"
+                     Grid.Column="1" Margin="0,3,-2,3"/>
+
+        </Grid>
+
+
+        <Button 
+                x:Name="btnUpdateParcel"  
+                Content="Update Parcel" 
+                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                materialDesign:ButtonAssist.CornerRadius="10" 
+                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Height="60" Width="198" 
+                Click="btnUpdateParcel_Click" 
+                Margin="474,75,0,0" Visibility="Collapsed"/>
+        <Button 
+                x:Name="btnShowDrone"  
+                Content="Drone dateiles" 
+                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                materialDesign:ButtonAssist.CornerRadius="10"     
+                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Height="60" Width="198" 
+                Click="btnShowDrone_Click" 
+                Margin="474,150,0,0" Visibility="Collapsed"/>
+
+        <Button 
+                x:Name="btnShowCustumerReciver"  
+                Content="custumer Reciver datailes" 
+                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                materialDesign:ButtonAssist.CornerRadius="10"                 
+                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Height="60" Width="198" 
+                Click="btnShowCustumerReciver_Click" 
+                Margin="474,225,0,0" Visibility="Collapsed"/>
+        <Button 
+                x:Name="btnShowCustumerSender"  
+                Content="custumer Sender datailes" 
+                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                materialDesign:ButtonAssist.CornerRadius="10"                 
+                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Height="60" Width="198" 
+                Click="btnShowCustumerSender_Click" 
+                Margin="474,301,0,0" Visibility="Collapsed"/>
+        <Button 
+                x:Name="btnRemuveParcel"  
+                Content="Remove Parcel" 
+                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                materialDesign:ButtonAssist.CornerRadius="10"                
+                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Height="60" Width="198" 
+                Click="btnRemoveParcel_Click" 
+                Margin="474,375,0,0" Visibility="Collapsed"/>
+        <Button 
+                x:Name="btnClose" 
+                Content="Close" 
+                Background="Firebrick"
+                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                materialDesign:ButtonAssist.CornerRadius="10" 
+                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                Click="closeButton_Click"  
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Width="108" Margin="519,549,0,0" />
+
+            <Grid 
+                x:Name="ADDParcelGrid" 
+                Visibility="Collapsed" 
+                VerticalAlignment="Top" 
+                Margin="10,44,0,0" 
+                HorizontalAlignment="Left" Height="259" Width="330">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="123"/>
+                    <ColumnDefinition Width="123"/>
+                </Grid.ColumnDefinitions>
+
+                <Label 
+                    
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center" 
+                    Content="parcel Id:" Width="118" Height="30"/>
+                <TextBox 
+                    x:Name="ParcelIDTextBox" 
+                    Width="151" 
+                    Height="30" 
+                    Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                    VerticalAlignment="Top" 
+                    HorizontalAlignment="Left" 
+                    materialDesign:HintAssist.HelperText="7-10 digits" 
+                    MaxLength="10"
+                    PreviewTextInput="NumberValidationTextBox"
+                    materialDesign:TextFieldAssist.HasClearButton="True" 
+                    IsEnabled="True" 
+                    Margin="7,4,0,0" 
+                    Grid.Column="1"/>
+                <Label 
+                    VerticalAlignment="Center" 
+                    Grid.Row="1" 
+                    Margin="3" 
+                    HorizontalAlignment="Left" 
+                    Grid.Column="0" 
+                    Content="Sender Name:"/>
+                <ComboBox x:Name="senderComboBox" VerticalAlignment="Center" Grid.Row="1"  Height="Auto"
+                         Grid.Column="1"  SelectedItem="{Binding Sender}" Margin="0,0,-32,0">
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel/>
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
+
+
+                <Label 
+                    VerticalAlignment="Center" 
+                    Grid.Row="2" 
+                    HorizontalAlignment="Left" 
+                    Content="Reciver Name:" Margin="3,0,0,0"/>
+                <ComboBox x:Name="ReciverComboBox" VerticalAlignment="Top" Grid.Row="2"  Height="Auto"
+                         Grid.Column="1"  SelectedItem="{Binding Resiver}" Margin="3,10,-35,0">
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel/>
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
+                <Label 
+                    VerticalAlignment="Top" 
+                    Grid.Row="3" 
+                    Margin="4,10,0,0" 
+                    HorizontalAlignment="Left" 
+                    Grid.Column="0" 
+                    Content="Priority:"/>
+                <ComboBox x:Name="PriorityComboBox" VerticalAlignment="Top" Grid.Row="3"  Height="Auto"
+                         Grid.Column="1"  SelectedItem="{Binding Priority}" Margin="3,10,-35,0">
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel/>
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
+                <Label 
+                    VerticalAlignment="Center" 
+                    Grid.Row="4" 
+                    HorizontalAlignment="Left" 
+                    Grid.Column="0" 
+                    Content="Weight Category:"/>
+                <ComboBox x:Name="WeightComboBox" VerticalAlignment="Center" Grid.Row="4"  Height="Auto"
+                         Grid.Column="1"  SelectedItem="{Binding Weight}" Margin="3,0,-35,0">
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel/>
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
+            </Grid>
+
+
+        <Button x:Name="btnOK" 
+                Content="OK" 
+                Margin="519,489,0,0" 
+                Visibility="Collapsed" 
+                Click="OK_Click"
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Height="35" Width="108" 
+                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                materialDesign:ButtonAssist.CornerRadius="10" />
+
+    </Grid>
+
+</Window>
